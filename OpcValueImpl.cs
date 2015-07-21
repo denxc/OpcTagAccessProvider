@@ -63,8 +63,8 @@
                     "OPC тег не активирован, но поступил запрос на деактивацию: " + Name);
             }
 
-            if (server.ServerState == (int) OPCServerState.OPCRunning) {
-                server.OPCGroups.Remove(opcGroup);
+            if (server.ServerState == (int) OPCServerState.OPCRunning) {                
+                server.OPCGroups.Remove(GroupName);
             }
         }
 
