@@ -10,19 +10,21 @@
         public bool IsListenValueChanging { get; set; }
         public bool IsActive { get; private set; }
         public string GroupName { get; private set; }
-        
+        public OPCDataSource Source { get; set; }
+
         private OPCServer server;
         private OPCGroup opcGroup;
         private OPCItem opcItem;
 
-        private List<IOpcValueListener> listeners = new List<IOpcValueListener>(); 
+        private List<IOpcValueListener> listeners = new List<IOpcValueListener>();
 
-        public OpcValueImpl(OPCServer aServer, string aName = "")
+        public OpcValueImpl(OPCServer aServer, string aName = "", OPCDataSource aSource = OPCDataSource.OPCCache)
         {
             if (aServer == null) {
                 throw new ArgumentNullException("aServer");
-            }            
+            }
 
+            Source = aSource;
             server = aServer;
             Name = aName;
         }
@@ -78,7 +80,7 @@
             object value;
             object quality;
             object timeStamp;
-            opcItem.Read((short) OPCDataSource.OPCCache, out value, out quality, out timeStamp);
+            opcItem.Read((short) Source, out value, out quality, out timeStamp);
             return value;
         }
 
