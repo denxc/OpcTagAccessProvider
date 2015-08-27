@@ -136,8 +136,8 @@
             }
 
             aValue = value;
-            aQuality = (int) quality;
-            aReadTime = (DateTime) timeStamp;
+            aQuality = Convert.ToInt32(quality);
+            aReadTime = Convert.ToDateTime(timeStamp);
         }
 
         public void WriteValue(object aValue)
