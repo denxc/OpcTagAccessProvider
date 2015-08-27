@@ -1,4 +1,6 @@
-﻿namespace OpcTagAccessProvider
+﻿using System;
+
+namespace OpcTagAccessProvider
 {
     /// <summary>
     /// Значение параметра на сервере OPC.
@@ -42,6 +44,14 @@
         /// </summary>
         /// <returns>Текущее значение.</returns>
         object ReadCurrentValue();
+
+        /// <summary>
+        /// Читает текущее значение.
+        /// </summary>
+        /// <param name="aValue">Значение.</param>
+        /// <param name="aQuality">Качество.</param>
+        /// <param name="aReadTime">Время чтения.</param>
+        void ReadCurrentValue(out object aValue, out int aQuality, out DateTime aReadTime);
 
         /// <summary>
         /// Записывает значение в ОРС параметр.

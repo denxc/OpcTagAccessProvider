@@ -47,6 +47,8 @@
   <ItemGroup>
     <Compile Include="IOpcValue.cs" />
     <Compile Include="IOpcValueListener.cs" />
+    <Compile Include="OpcValueChangedEventArgs.cs" />
+    <Compile Include="OpcValueException.cs" />
     <Compile Include="OpcValueImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

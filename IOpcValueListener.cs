@@ -2,6 +2,6 @@
 {
     public interface IOpcValueListener
     {
-        void OnValueChanged(IOpcValue aOpcValue, object aCurrentValue);
+        void OnValueChanged(IOpcValue aOpcValue, OpcValueChangedEventArgs aValueChangedEventArgs);
     }
 }
