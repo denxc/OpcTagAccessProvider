@@ -9,6 +9,7 @@
         private string name;
         private bool isListenValueChanging;
         private OPCDataSource source;
+        private int updateRate;
         private OPCServer server;
         private OPCGroup opcGroup;
         private OPCItem opcItem;
@@ -51,10 +52,25 @@
             }
         }
 
+        public int UpdateRate {
+            get { return updateRate; }
+            set {
+                if (value <= 0) {
+                    throw new ArgumentException("UpdateRate не может быть меньше или равен 0.");
+                }
+
+                updateRate = value;
+            }
+        }
+
         public bool IsActive { get; private set; }
         public string GroupName { get; private set; }        
 
-        public OpcValueImpl(OPCServer aServer, string aName = "", OPCDataSource aSource = OPCDataSource.OPCCache)
+        public OpcValueImpl(
+            OPCServer aServer, 
+            string aName = "", 
+            OPCDataSource aSource = OPCDataSource.OPCCache, 
+            int aUpdateRate = 100)
         {
             if (aServer == null) {
                 throw new ArgumentNullException("aServer");
@@ -63,6 +79,7 @@
             Source = aSource;
             server = aServer;
             Name = aName;
+            UpdateRate = aUpdateRate;
         }
 
         public void Activate()
@@ -86,7 +103,7 @@
 
             if (isListenValueChanging) {
                 opcGroup.DataChange += ValueChanged;
-                opcGroup.UpdateRate = 100;
+                opcGroup.UpdateRate = UpdateRate;
                 opcGroup.IsActive = true;
                 opcGroup.IsSubscribed = true;
             }
